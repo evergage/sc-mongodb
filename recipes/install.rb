@@ -98,7 +98,7 @@ end
 
 # Adjust the version number for RHEL style if needed
 package_version = case node['platform_family']
-                  when 'rhel'
+                  when 'rhel', 'amazon'
                     if node['platform'] == 'amazon'
                       "#{node['mongodb']['package_version']}-1.amzn1"
                     else

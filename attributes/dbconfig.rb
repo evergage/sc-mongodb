@@ -14,14 +14,14 @@ default['mongodb']['config']['mongod']['systemLog']['logAppend'] = true
 default['mongodb']['config']['mongod']['systemLog']['path'] = '/var/log/mongodb/mongod.log'
 
 case node['platform_family']
-when 'rhel', 'fedora'
+when 'rhel', 'fedora', 'amazon'
   default['mongodb']['config']['mongod']['processManagement']['fork'] = true
   default['mongodb']['config']['mongod']['processManagement']['pidFilePath'] = '/var/run/mongodb/mongod.pid'
 end
 
 default['mongodb']['config']['mongod']['storage']['journal']['enabled'] = true
 default['mongodb']['config']['mongod']['storage']['dbPath'] = case node['platform_family']
-                                                              when 'rhel', 'fedora'
+                                                              when 'rhel', 'fedora', 'amazon'
                                                                 '/var/lib/mongo'
                                                               else
                                                                 '/var/lib/mongodb'
