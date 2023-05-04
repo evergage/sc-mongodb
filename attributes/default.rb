@@ -82,7 +82,7 @@ default['mongodb']['is_configserver'] = nil
 default['mongodb']['reload_action'] = 'restart' # or "nothing"
 
 case node['platform_family']
-when 'rhel', 'fedora'
+when 'rhel', 'fedora', 'amazon'
   # determine the package name
   # from http://rpm.pbone.net/index.php3?stat=3&limit=1&srodzaj=3&dl=40&search=mongodb
   # verified for RHEL5,6 Fedora 18,19
