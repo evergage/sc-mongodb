@@ -99,11 +99,7 @@ end
 # Adjust the version number for RHEL style if needed
 package_version = case node['platform_family']
                   when 'rhel'
-                    if node['platform'] == 'amazon'
-                      "#{node['mongodb']['package_version']}-1.amzn1"
-                    else
-                      "#{node['mongodb']['package_version']}-1.el#{node['platform_version'].to_i}"
-                    end
+                    "#{node['mongodb']['package_version']}-1.el#{node['platform_version'].to_i}"
                   when 'amazon'
                     "#{node['mongodb']['package_version']}-1.amzn1"
                   when 'fedora'
