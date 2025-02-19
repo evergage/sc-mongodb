@@ -101,7 +101,12 @@ package_version = case node['platform_family']
                   when 'rhel'
                     "#{node['mongodb']['package_version']}-1.el#{node['platform_version'].to_i}"
                   when 'amazon'
-                    "#{node['mongodb']['package_version']}-1.amzn1"
+                    # al2 non graviton machines still have this version in yum repos hence && check for arch type
+                    if node['platform_version'].to_i == 2 && node['kernel']['machine'] == 'aarch64'
+                      "#{node['mongodb']['package_version']}-1.amzn2"
+                    else
+                      "#{node['mongodb']['package_version']}-1.amzn1"
+                    end
                   when 'fedora'
                     "#{node['mongodb']['package_version']}-1.el7"
                   else
